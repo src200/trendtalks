@@ -1,17 +1,18 @@
 var express = require('express');
-var trending = require('github-trending');
+var gt = require('@huchenme/github-trending');
 var router = express.Router();
 
 // fetch trending repositories
 router.get('/trending', function (req, res, next) {
-    trending('rust', function (err, repositories) {
-        res.send(repositories);
+    gt.fetchRepositories().then(function (repos) {
+        var reposList = [];
+        repos.forEach(function (repo) {
+            reposList.push({ url: repo.url, query: repo.name + ' ' + repo.author });
+        });
+        res.render('index', { reposList: reposList });
+    }, function (error) {
+        res.send(error);
     });
-    // gt.fetchRepositories().then(function (res) {
-    //     res.send(res);
-    // }, function (error) {
-    //     res.send(error);
-    // });
 });
 
 module.exports = router;
