@@ -1,5 +1,7 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div.container
+    ul
+      each repo in reposList
+        li=repo.url
