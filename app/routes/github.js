@@ -8,7 +8,7 @@ router.get('/trending', function (req, res, next) {
     gt.fetchRepositories().then(function (repos) {
         var promises = [];
         repos.forEach(function (repo) {
-            promises.push(createPromise(repo))
+            promises.push(searchHackerNews(repo))
         });
         
         Promise.all(promises).then(function (results) {
@@ -21,18 +21,27 @@ router.get('/trending', function (req, res, next) {
     });
 });
 
-function createPromise(repo) {
+// search hacker news
+// return urls for found items
+function searchHackerNews(repo) {
     return new Promise(function (resolve, reject) {
-        request('https://www.googleapis.com/customsearch/v1?key=AIzaSyDSS2JNP1_vB-pjThvbVGD7YUC_Ns7S0t4&cx=003147681764474438121:j7-pcqku6gg&q=' + repo.name + ' ' + repo.author, function (error, response, body) {
-            try {
-                var parsedBody = JSON.parse(body);
-                if (parsedBody.error) { 
-                    reject(body.error);
-                } else {
-                    resolve({ repo_url: repo.url, repo_query: repo.name + ' ' + repo.author, google_result: parsedBody });              
-                }
-            } catch (error) {
+        request('http://hn.algolia.com/api/v1/search?query=' + repo.url, function (error, response, body) {
+            if (error) {
                 reject(error);
+            }
+            console.log(response.nbHits);
+            if (body.hits && body.hits.length > 0) {
+                var hackerNewsUrls = [];
+                body.hits.forEach(function (hit) {
+                    var hnStory = 'https://news.ycombinator.com/item?id=' + hit.objectID;
+                    hackerNewsUrls.push(hnStory);
+                });
+
+                repo.hnUrls = hackerNewsUrls; 
+                resolve(repo);
+            } else {
+                repo.hnUrls = [];
+                resolve(repo);
             }
         });
     });
