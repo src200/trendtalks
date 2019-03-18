@@ -11,6 +11,7 @@ router.get('/trending', function (req, res, next) {
         repos.forEach(function (repo) {
             promises.push(searchHackerNews(repo));
             promises.push(searchReddit(repo));
+            promises.push(searchTwitter(repo));
         });
         
         Promise.all(promises).then(function (results) {
@@ -55,7 +56,6 @@ function searchHackerNews(repo) {
     });
 }
 
-
 // search reddit
 function searchReddit(repo) {
     return new Promise(function (resolve, reject) {
@@ -96,5 +96,16 @@ function searchReddit(repo) {
         });
     });
 }
+
+// search twitter
+function searchTwitter(repo) {
+    return new Promise(function (resolve, reject) {
+        var twitterUrl = []; 
+        twitterUrl.push('https://twitter.com/search?src=typd&q=' + repo.url);
+        repo.twitterUrls = twitterUrl;
+        resolve(repo);
+    });
+}
+
 
 module.exports = router;
