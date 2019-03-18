@@ -25,14 +25,21 @@ router.get('/trending', function (req, res, next) {
 // return urls for found items
 function searchHackerNews(repo) {
     return new Promise(function (resolve, reject) {
-        request('http://hn.algolia.com/api/v1/search?query=' + repo.url, function (error, response, body) {
+        request('https://hn.algolia.com/api/v1/search?query=' + repo.url, function (error, response, body) {
             if (error) {
                 reject(error);
             }
-            console.log(response.nbHits);
-            if (body.hits && body.hits.length > 0) {
+            
+            var _body = {}
+            try {
+                _body = JSON.parse(body);
+            } catch (e) {
+                
+            }
+
+            if (_body.hits && _body.hits.length > 0) {
                 var hackerNewsUrls = [];
-                body.hits.forEach(function (hit) {
+                _body.hits.forEach(function (hit) {
                     var hnStory = 'https://news.ycombinator.com/item?id=' + hit.objectID;
                     hackerNewsUrls.push(hnStory);
                 });
@@ -45,7 +52,6 @@ function searchHackerNews(repo) {
             }
         });
     });
-   
 }
 
 module.exports = router;
