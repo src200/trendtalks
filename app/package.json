@@ -12,6 +12,7 @@
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
     "pug": "2.0.0-beta11",
+    "random-useragent": "^0.3.1",
     "request": "^2.88.0"
   }
 }
