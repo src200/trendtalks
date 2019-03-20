@@ -15,7 +15,19 @@ router.get('/trending', function (req, res, next) {
         });
         
         Promise.all(promises).then(function (results) {
-            res.send(results);
+            // res.send(results);
+            var temp = {};
+            results.forEach(function (_res) {
+                temp[_res.name] = _res;
+            });
+
+            var _tempRes = [];
+            for (var key in temp) {
+                _tempRes.push(temp[key])
+            }
+
+
+            res.send(_tempRes);
         }).catch(function (error) {
             res.send(error);
         })
