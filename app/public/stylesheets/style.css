@@ -4,6 +4,7 @@ html, body * {
 }
 
 body {
+  padding: 50px;
   background-image: url('../images/grey.png');
   background-repeat: repeat;
 }

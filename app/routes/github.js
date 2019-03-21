@@ -7,6 +7,7 @@ var randomUseragent = require('random-useragent');
 // fetch trending repositories
 router.get('/', function (req, res, next) {
     gt.fetchRepositories().then(function (repos) {
+        // res.send(repos);
         res.render('index', { repos: repos });
     }, function (error) {
         res.send(error);

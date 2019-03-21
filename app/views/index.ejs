@@ -2,17 +2,42 @@
     <head>
         <meta charset="UTF-8">
         <title>TrendTalks</title>
-        <link rel="stylesheet" href="stylesheets/style.css">        
+        <link rel="stylesheet" href="stylesheets/style.css">   
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
     <body>
-        <ul>
-            <% repos.forEach(function(repo){ %>
-                <li>
-                    <b><%= repo.author%> / <%= repo.name%></b>
-                </li>
-            <% }); %>
-        </ul>
+        <div class="container">
+            <div class="row">
+                <% repos.forEach(function(repo){ %>
+                    <div class="col-sm-9" style="margin: 15px">
+                        <div class="card">
+                            <!-- <img class="card-img-top" style="height: 100px; width: 100px; display: block;" src="<%= repo.builtBy[0].avatar%>" alt="Author Avatar"> -->
+                            <div class="card-body">
+                                <a href="<%= repo.url%>" target="_blank">
+                                    <h4 class="card-title"><%= repo.author%> / <%= repo.name%></h4>
+                                </a>
+                                <p class="card-text"><%= repo.description%></p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted"></small>
+                                <span class="d-inline-block">
+                                    Authored by
+                                    <% repo.builtBy.forEach(function(user) { %>
+                                        <a class="d-inline-block" target="_blank" href="<%= user.href%>"><img class="avatar mb-1" src="<%= user.avatar%>" width="20" height="20"></a>
+                                    <% }); %>
+                                </span>
+                                <span class="d-inline-block">
+                                    Buzzed in
+                                    <a class="d-inline-block" href="<%= user.href%>"><img class="avatar mb-1" src="<%= user.avatar%>" width="20" height="20"></a>
+                                    <a class="d-inline-block" href="<%= user.href%>"><img class="avatar mb-1" src="<%= user.avatar%>" width="20" height="20"></a>
+                                    <a class="d-inline-block" href="<%= user.href%>"><img class="avatar mb-1" src="<%= user.avatar%>" width="20" height="20"></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>    
+                <% }); %>
+            </div>
+        </div>
     </body>
 </html>
