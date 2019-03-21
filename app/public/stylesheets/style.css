@@ -1,8 +1,9 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html, body * {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
 }
 
-a {
-  color: #00B7FF;
+body {
+  background-image: url('../images/grey.png');
+  background-repeat: repeat;
 }
