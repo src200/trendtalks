@@ -7,7 +7,6 @@ var logger = require('morgan');
 var indexRouter = require('./routes/github');
 var hnRoute = require('./routes/hackernews');
 var redditRoute = require('./routes/reddit');
-var twitterRoute = require('./routes/twitter');
 
 var app = express();
 
@@ -22,7 +21,6 @@ app.set('view engine', 'ejs');
 app.use('/', indexRouter);
 app.use('/hn', hnRoute);
 app.use('/reddit', redditRoute);
-app.use('/twitter', twitterRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

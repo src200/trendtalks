@@ -8,3 +8,29 @@ body {
   background-image: url('../images/grey.png');
   background-repeat: repeat;
 }
+
+.mr-3 {
+  margin-right: 16px!important;
+}
+.f6 {
+  font-size: 12px!important;
+}
+.mt-2 {
+  margin-top: 8px!important;
+}
+.text-gray {
+  color: #586069!important;
+}
+.repo-language-color {
+  border-radius: 50%;
+  display: inline-block;
+  height: 12px;
+  position: relative;
+  top: 1px;
+  width: 12px;
+}
+.res-image {
+  height: 20px; 
+  width: 20px;
+  cursor: pointer;
+}

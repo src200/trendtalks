@@ -5,7 +5,7 @@ var randomUseragent = require('random-useragent');
 
 
 router.get('/', function (req, res, next) {
-    searchHackerNews(req.repo).then(function (result) {
+    searchHackerNews(req).then(function (result) {
         res.send(result);
     }, function (error) {
         res.send(error);
@@ -13,9 +13,9 @@ router.get('/', function (req, res, next) {
 });
 
 // search hacker news
-function searchHackerNews(repo) {
+function searchHackerNews(req) {
     return new Promise(function (resolve, reject) {
-        request('https://hn.algolia.com/api/v1/search?query=' + repo.url, function (error, response, body) {
+        request('https://hn.algolia.com/api/v1/search?query=' + req.q, function (error, response, body) {
             if (error) {
                 reject(error);
             }
@@ -27,18 +27,17 @@ function searchHackerNews(repo) {
                 
             }
 
+            var hackerNewsUrls = [];
             if (_body.hits && _body.hits.length > 0) {
-                var hackerNewsUrls = [];
+                
                 _body.hits.forEach(function (hit) {
                     var hnStory = 'https://news.ycombinator.com/item?id=' + hit.objectID;
                     hackerNewsUrls.push(hnStory);
                 });
 
-                repo.hnUrls = hackerNewsUrls; 
-                resolve(repo);
+                resolve(hackerNewsUrls);
             } else {
-                repo.hnUrls = [];
-                resolve(repo);
+                resolve(hackerNewsUrls);
             }
         });
     });

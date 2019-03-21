@@ -5,7 +5,7 @@ var randomUseragent = require('random-useragent');
 
 
 router.get('/', function (req, res, next) {
-    searchReddit(req.repo).then(function (result) {
+    searchReddit(req).then(function (result) {
         res.send(result);
     }, function (error) {
         res.send(error);
@@ -13,11 +13,11 @@ router.get('/', function (req, res, next) {
 });
 
 // search reddit
-function searchReddit(repo) {
+function searchReddit(req) {
     return new Promise(function (resolve, reject) {
         var options = {
             method: 'GET',
-            url: 'https://api.reddit.com/search?q=' + repo.url,
+            url: 'https://api.reddit.com/search?q=' + req.q,
             headers: {
                 'User-Agent': randomUseragent.getRandom()
             }
@@ -35,19 +35,18 @@ function searchReddit(repo) {
                 
             }
 
+            var redditUrls = [];
             if (_body.data && _body.data.children && _body.data.children.length > 0) {
-                var redditUrls = [];
+                
                 _body.data.children.forEach(function (hit) {
                     if (hit.data && hit.data.permalink) {
                         redditUrls.push('https://reddit.com/' + hit.data.permalink);
                     }                    
                 });
 
-                repo.redditUrls = redditUrls; 
-                resolve(repo);
+                resolve(redditUrls);
             } else {
-                repo.redditUrls = [];
-                resolve(repo);
+                resolve(redditUrls);
             }
         });
     });
