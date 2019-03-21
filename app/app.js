@@ -4,8 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var githubRouter = require('./routes/github');
+var indexRouter = require('./routes/github');
+var hnRoute = require('./routes/hackernews');
+var redditRoute = require('./routes/reddit');
+var twitterRoute = require('./routes/twitter');
 
 var app = express();
 
@@ -14,9 +16,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.use('/', indexRouter);
-app.use('/github', githubRouter);
+app.use('/hn', hnRoute);
+app.use('/reddit', redditRoute);
+app.use('/twitter', twitterRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -31,7 +37,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send(err);
 });
 
 module.exports = app;

@@ -1,0 +1,12 @@
+<html>
+    <head>Header</head>
+    <body>
+        <ul>
+            <% repos.forEach(function(repo){ %>
+                <li>
+                    <b><%= repo.author%> / <%= repo.name%></b>
+                </li>
+            <% }); %>
+        </ul>
+    </body>
+</html>

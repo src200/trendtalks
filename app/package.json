@@ -9,10 +9,10 @@
     "@huchenme/github-trending": "^1.5.4",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "ejs": "^2.6.1",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11",
     "random-useragent": "^0.3.1",
     "request": "^2.88.0"
   }
