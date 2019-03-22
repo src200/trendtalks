@@ -5,8 +5,8 @@ html, body * {
 
 body {
   padding: 50px;
-  background-image: url('../images/grey.png');
-  background-repeat: repeat;
+  /* background-image: url('../images/grey.png');
+  background-repeat: repeat; */
 }
 
 .mr-3 {
@@ -33,4 +33,10 @@ body {
   height: 20px; 
   width: 20px;
   cursor: pointer;
+}
+.card {
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 0 10px #dedede;
 }

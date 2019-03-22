@@ -3,7 +3,6 @@
         <meta charset="UTF-8">
         <title>TrendTalks</title>
         <link rel="stylesheet" href="stylesheets/style.css">  
-        <link rel="stylesheet" href="stylesheets/tipped.css"> 
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
@@ -13,18 +12,17 @@
                 <% repos.forEach(function(repo){ %>
                     <div class="col-sm-9" style="margin: 15px">
                         <div class="card">
-                            <!-- <img class="card-img-top" style="height: 100px; width: 100px; display: block;" src="<%= repo.builtBy[0].avatar%>" alt="Author Avatar"> -->
                             <div class="card-body">
                                 <a href="<%= repo.url%>" target="_blank">
                                     <h4 class="card-title"><%= repo.author%> / <%= repo.name%></h4>
                                 </a>
-                                <span>
+                                <!-- <span>
                                     <img id="hn" data-tipped-options="ajax: { url: '/hn?q= <%=repo.url%>' }" class="res-image" src="https://news.ycombinator.com/favicon.ico">
                                     <img id="reddit" class="res-image" src="https://www.redditstatic.com/desktop2x/img/favicon/favicon-96x96.png">
                                     <a href="https://twitter.com/search?src=typed_query&q=<%=repo.url%>" target="_blank">
                                         <img id="twitter" class="res-image" src="https://abs.twimg.com/favicons/favicon.ico">
                                     </a>
-                                </span>
+                                </span> -->
                                 <p class="card-text"><%= repo.description%></p>
                             </div>
                             <div class="card-footer">                                
@@ -63,26 +61,8 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
-        <script type="text/javascript" src="javascripts/tipped.js"></script>
     </body>
 </html>
 <script type="text/javascript">
- $(document).ready(function() {
-    Tipped.create('#reddit', {
-      ajax: {
-        url: 'http://vimeo.com/api/oembed.json?url=http://vimeo.com/6428069&maxwidth=280&maxheight=280',
-        success: function(data, textStatus, jqXHR) {
-          return {
-            title: data.title,
-            content: data.html
-          };
-        }
-      },
-      close: true,
-      hideOn: false,
-      skin: 'light',
-      radius: false,
-      position: 'topleft'
-    });
-})
+ 
 </script>
