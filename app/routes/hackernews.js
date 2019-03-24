@@ -15,7 +15,7 @@ router.get('/', function (req, res, next) {
 // search hacker news
 function searchHackerNews(req) {
     return new Promise(function (resolve, reject) {
-        request('https://hn.algolia.com/api/v1/search?query=' + req.q, function (error, response, body) {
+        request('https://hn.algolia.com/api/v1/search?query=' + req.query.q, function (error, response, body) {
             if (error) {
                 reject(error);
             }

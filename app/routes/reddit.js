@@ -17,7 +17,7 @@ function searchReddit(req) {
     return new Promise(function (resolve, reject) {
         var options = {
             method: 'GET',
-            url: 'https://api.reddit.com/search?q=' + req.q,
+            url: 'https://api.reddit.com/search?q=' + req.query.q,
             headers: {
                 'User-Agent': randomUseragent.getRandom()
             }
@@ -37,10 +37,9 @@ function searchReddit(req) {
 
             var redditUrls = [];
             if (_body.data && _body.data.children && _body.data.children.length > 0) {
-                
                 _body.data.children.forEach(function (hit) {
                     if (hit.data && hit.data.permalink) {
-                        redditUrls.push('https://reddit.com/' + hit.data.permalink);
+                        redditUrls.push('https://reddit.com' + hit.data.permalink);
                     }                    
                 });
 

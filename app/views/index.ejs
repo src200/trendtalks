@@ -30,7 +30,7 @@
                                     <% if (repo.language) { %>
                                         <span class="d-inline-block mr-3">
                                             <span class="repo-language-color ml-0" style="background-color: <%= repo.languageColor%>"></span>
-                                            <span itemprop="programmingLanguage">
+                                            <span>
                                                 <%= repo.language %>
                                             </span>
                                         </span>
@@ -52,17 +52,34 @@
                                         <% }); %>
                                     </span>
                                 </div>
+                                <div class="mt-15">
+                                    <ul id="twitter-<%= repo.name%>">
+                                        <li>
+                                            <a class="repo-article" href="https://twitter.com/search?src=typed_query&q=<%=repo.url%>" target="_blank">
+                                                <%= repo.description %>
+                                            </a>
+                                            <span class="text-gray text-muted" style="font-size: 10px">Twitter</span>
+                                            <span class="pull-right">
+                                                <button class="btn btn-primary btn-sm" id="<%= repo.name%>-btn" style="margin-top: -20px" type="button" onclick="fetchUrls(<%=JSON.stringify(repo)%>)">See more..</button>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                    <img style="margin-left:245px; display:none" id="<%= repo.name%>-loader" src="images/loader.gif" />
+                                    <ul id="hn-<%= repo.name%>">
+                                        
+                                    </ul>
+                                    <ul id="reddit-<%= repo.name%>">
+
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 <% }); %>
             </div>
         </div>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
-<script type="text/javascript">
- 
-</script>
