@@ -1,12 +1,3 @@
+## TrendTalks
 
-#TODO
-
-##Websites to crawl 
-
-Hackernews
-Medium
-Lobsters
-Reddit
-Dev.to
-Twitter
-Wired
+### See what people are talking about trending repositories on github in Twitter, HackerNews and Reddit.
