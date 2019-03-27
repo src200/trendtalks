@@ -52,3 +52,27 @@ body {
 .mt-15 {
   margin-top: 15px;
 }
+
+ul {
+  list-style-type: none;
+  padding-left: 5px;
+}
+
+ul li {
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: 0 8px;
+  padding-left: 20px;
+}
+
+ul[id^=twitter-] li{
+  background-image: url('https://abs.twimg.com/favicons/favicon.ico');
+}
+
+ul[id^=hn-] li {
+  background-image: url('https://news.ycombinator.com/favicon.ico');
+}
+
+ul[id^=reddit-] li{
+  background-image: url('https://www.redditstatic.com/desktop2x/img/favicon/favicon-16x16.png');
+}
