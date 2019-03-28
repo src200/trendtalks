@@ -46,7 +46,7 @@ body {
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 700px;
+  max-width: 70%;
   display: block;
 }
 .mt-15 {
@@ -75,4 +75,9 @@ ul[id^=hn-] li {
 
 ul[id^=reddit-] li{
   background-image: url('https://www.redditstatic.com/desktop2x/img/favicon/favicon-16x16.png');
+}
+
+.loader {
+  display: none;
+  max-width: 25%;
 }
