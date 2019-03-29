@@ -55,23 +55,23 @@
                                     </span>
                                 </div>
                                 <div class="mt-15">
-                                    <ul id="twitter-<%= repo.name%>">
+                                    <ul id="twitter-<%= repo.name.replace(/[^a-zA-Z ]/g, '')%>">
                                         <li>
                                             <a class="repo-article" href="https://twitter.com/search?src=typed_query&q=<%=repo.url%>" target="_blank">
                                                 <%= repo.description %>
                                             </a>
                                             <span class="text-gray text-muted" style="font-size: 10px">Twitter</span>
                                             <span class="pull-right">
-                                                <button class="btn btn-primary btn-sm" id="<%= repo.name%>-btn" style="margin-top: -20px" type="button" onclick="fetchUrls(<%=JSON.stringify(repo)%>)">See more..</button>
+                                                <button class="btn btn-primary btn-sm" id="<%= repo.name.replace(/[^a-zA-Z ]/g, '')%>-btn" style="margin-top: -20px" type="button" onclick="fetchUrls(<%=JSON.stringify(repo)%>)">See more..</button>
                                             </span>
                                         </li>
                                     </ul>
-                                    <ul id="hn-<%= repo.name%>"></ul>
-                                    <ul id="reddit-<%= repo.name%>"></ul>
+                                    <ul id="hn-<%= repo.name.replace(/[^a-zA-Z ]/g, '')%>"></ul>
+                                    <ul id="reddit-<%= repo.name.replace(/[^a-zA-Z ]/g, '')%>"></ul>
                                 </div>
                             </div>
                             <div class="text-center">
-                                <img class="loader" id="<%= repo.name%>-loader" src="images/loader.gif" />
+                                <img class="loader" id="<%= repo.name.replace(/[^a-zA-Z ]/g, '')%>-loader" src="images/loader.gif" />
                             </div>
                         </div>
                     </div>

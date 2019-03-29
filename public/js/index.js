@@ -1,4 +1,6 @@
 function fetchUrls(repo) {
+    repo.name = repo.name.replace(/[^a-zA-Z ]/g, '');
+    
     $("#"+repo.name+"-loader").show();
     $("#"+repo.name+"-btn").prop('disabled', true);
 
