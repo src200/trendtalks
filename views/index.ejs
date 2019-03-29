@@ -5,7 +5,7 @@
         <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
         <link rel="stylesheet" href="stylesheets/style.css">  
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
     <body>
@@ -16,7 +16,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <a href="<%= repo.url%>" target="_blank">
-                                    <h4 class="card-title"><%= repo.author%> / <%= repo.name%></h4>
+                                    <span class="card-title"><%= repo.author%> / <%= repo.name%></span>
                                 </a>
                                 <!-- <span>
                                     <img id="hn" data-tipped-options="ajax: { url: '/hn?q= <%=repo.url%>' }" class="res-image" src="https://news.ycombinator.com/favicon.ico">
@@ -61,9 +61,7 @@
                                                 <%= repo.description %>
                                             </a>
                                             <span class="text-gray text-muted" style="font-size: 10px">Twitter</span>
-                                            <span class="pull-right">
-                                                <button class="btn btn-primary btn-sm" id="<%= repo.name.replace(/[^a-zA-Z ]/g, '')%>-btn" style="margin-top: -20px" type="button" onclick="fetchUrls(<%=JSON.stringify(repo)%>)">See more..</button>
-                                            </span>
+                                            <button class="see-more-btn" id="<%= repo.name.replace(/[^a-zA-Z ]/g, '')%>-btn" type="button" onclick="fetchUrls(<%=JSON.stringify(repo)%>)">See more..</button>                                            
                                         </li>
                                     </ul>
                                     <ul id="hn-<%= repo.name.replace(/[^a-zA-Z ]/g, '')%>"></ul>
@@ -71,15 +69,18 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <img class="loader" id="<%= repo.name.replace(/[^a-zA-Z ]/g, '')%>-loader" src="images/loader.gif" />
+                                <img id="<%= repo.name.replace(/[^a-zA-Z ]/g, '')%>-loader" class="loader" alt="Loading..." src="https://cdn.dribbble.com/users/2234430/screenshots/4925025/gif.gif">
                             </div>
+                            <!-- <div class="text-center">
+                                <img class="loader" id="<%= repo.name.replace(/[^a-zA-Z ]/g, '')%>-loader" src="images/loader.gif" />
+                            </div> -->
                         </div>
                     </div>
                 <% }); %>
             </div>
         </div>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
         <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>

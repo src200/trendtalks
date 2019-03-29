@@ -1,12 +1,22 @@
-html, body * {
+html {
   font-family: 'Open Sans', sans-serif;
   font-size: 15px;
 }
 
 body {
   padding: 50px;
+  max-width: 900;
+  margin: 0 auto;
   /* background-image: url('../images/grey.png');
   background-repeat: repeat; */
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  text-decoration: underline;
 }
 
 .mr-3 {
@@ -35,19 +45,48 @@ body {
   cursor: pointer;
 }
 .card {
-  border: 1px solid #dedede;
-  border-radius: 5px;
+  /* background: linear-gradient(to right,#fce4ed,#ffe8cc); */
+  /* border: 10px solid #fff; */
+  /* border: 1px solid #dedede; */
+  /* border-radius: 5px; */
   padding: 15px;
-  box-shadow: 0 0 10px #dedede;
+  border: 1px solid #da1b60;
+  border-radius: 8px;
+  /* box-shadow: 0 0 10px #dedede; */
+  margin-bottom: 35px;
+  color: #586069!important;
+}
+.card-title {
+  position: relative;
+  bottom: 28px;
+  font-size: large;
+  background: white;
+  /* text-decoration: none; */
+  padding: 6;
+}
+.card-text {
+  margin-top: -15px;
 }
 .repo-article {
   font-size: 13px;
-  color: black;
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 70%;
   display: block;
+  color: #586069!important;
+}
+.see-more-btn {
+  float: right;
+  border: 1px;
+  border-radius: 4px;
+  font-weight: 500;
+  padding: 8px;
+  cursor: pointer;
+  background: linear-gradient(to right,#fdc2c2,#fde3c3);
+}
+.see-more-btn:disabled {
+  cursor: default;
 }
 .mt-15 {
   margin-top: 15px;
@@ -79,5 +118,9 @@ ul[id^=reddit-] li{
 
 .loader {
   display: none;
-  max-width: 25%;
+  max-width: 100px;
+  max-height: 300px;
+}
+.text-center {
+  text-align: center;
 }
