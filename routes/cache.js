@@ -2,7 +2,7 @@
 var gt = require('@huchenme/github-trending');
 var NodeCache = require("node-cache");
 
-var appCache = new NodeCache({ stdTTL: 0, checkperiod: 120 });
+var appCache = new NodeCache({ stdTTL: 86400, checkperiod: 0 });
 
 // define cache obj
 var trendingRepos = { repos: [] };
