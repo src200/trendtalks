@@ -7,8 +7,10 @@ var logger = require('morgan');
 var indexRouter = require('./routes/github');
 var hnRoute = require('./routes/hackernews');
 var redditRoute = require('./routes/reddit');
+var cache = require('./routes/cache');
 
 var app = express();
+cache.initialize();
 
 app.use(logger('dev'));
 app.use(express.json());
