@@ -4,13 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/github');
-var hnRoute = require('./routes/hackernews');
-var redditRoute = require('./routes/reddit');
-var cache = require('./routes/cache');
+var indexRouter = require('./routes/employee');
 
 var app = express();
-cache.initialize();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -21,8 +17,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use('/', indexRouter);
-app.use('/hn', hnRoute);
-app.use('/reddit', redditRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
