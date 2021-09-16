@@ -27,12 +27,12 @@ function searchReddit(req) {
             if (error) {
                 reject(error);
             }
-            
+
             var _body = {}
             try {
                 _body = JSON.parse(body);
             } catch (e) {
-                
+
             }
 
             var redditUrls = [];
@@ -40,7 +40,7 @@ function searchReddit(req) {
                 _body.data.children.forEach(function (hit) {
                     if (hit.data && hit.data.permalink) {
                         redditUrls.push('https://reddit.com' + hit.data.permalink);
-                    }                    
+                    }
                 });
 
                 resolve(redditUrls);

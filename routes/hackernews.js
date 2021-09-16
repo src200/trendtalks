@@ -19,17 +19,17 @@ function searchHackerNews(req) {
             if (error) {
                 reject(error);
             }
-            
+
             var _body = {}
             try {
                 _body = JSON.parse(body);
             } catch (e) {
-                
+
             }
 
             var hackerNewsUrls = [];
             if (_body.hits && _body.hits.length > 0) {
-                
+
                 _body.hits.forEach(function (hit) {
                     var hnStory = 'https://news.ycombinator.com/item?id=' + hit.objectID;
                     hackerNewsUrls.push(hnStory);
