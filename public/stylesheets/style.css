@@ -1,5 +1,5 @@
 html {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Comfortaa", sans-serif;
   font-size: 15px;
 }
 
@@ -57,9 +57,10 @@ a:hover {
   color: #586069 !important;
 }
 .card-title {
+  font-size: 20px;
+  font-weight: 600;
   position: relative;
   bottom: 28px;
-  font-size: large;
   background: white;
   /* text-decoration: none; */
   padding: 6;
@@ -113,13 +114,13 @@ ul[id^="hn-"] li {
 }
 
 ul[id^="reddit-"] li {
-  background-image: url("https://www.redditstatic.com/desktop2x/img/favicon/favicon-16x16.png");
+  background-image: url("https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-57x57.png");
 }
 
 .loader {
   display: none;
-  max-width: 100px;
-  max-height: 300px;
+  height: 32px;
+  width: 30px;
 }
 .text-center {
   text-align: center;

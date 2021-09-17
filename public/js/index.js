@@ -1,8 +1,8 @@
 function fetchUrls(repo) {
-    repo.name = repo.name.replace(/[^a-zA-Z ]/g, '');
+    repo.repositoryName = repo.repositoryName.replace(/[^a-zA-Z ]/g, '');
 
-    $("#" + repo.name + "-loader").show();
-    $("#" + repo.name + "-btn").prop('disabled', true);
+    $("#" + repo.repositoryName + "-loader").show();
+    $("#" + repo.repositoryName + "-btn").prop('disabled', true);
 
     var promises = [];
 
@@ -34,21 +34,21 @@ function fetchUrls(repo) {
 
 
     Promise.all(promises).then(function (res) {
-        var hn = $('#hn-' + repo.name);
+        var hn = $('#hn-' + repo.repositoryName);
         $.each(res[0], function (i, v) {
             hn.append("<li style='margin-bottom: 5px'><a class='repo-article' href=" + v + " target='_blank'>" + v + "</a><span class='text-gray text-muted' style='font-size: 10px'>Hacker News</span></li>");
         });
 
-        var re = $('#reddit-' + repo.name);
+        var re = $('#reddit-' + repo.repositoryName);
         $.each(res[1], function (i, v) {
             re.append("<li style='margin-bottom: 5px'><a class='repo-article' href=" + v + " target='_blank'>" + v + "</a><span class='text-gray text-muted' style='font-size: 10px'>Reddit</span></li>");
         });
 
-        $("#" + repo.name + "-loader").hide();
-        $("#" + repo.name + "-btn").hide();
+        $("#" + repo.repositoryName + "-loader").hide();
+        $("#" + repo.repositoryName + "-btn").hide();
     }).catch(function (e) {
         console.log('Error occured', e);
-        $("#" + repo.name + "-loader").hide();
-        $("#" + repo.name + "-btn").hide();
+        $("#" + repo.repositoryName + "-loader").hide();
+        $("#" + repo.repositoryName + "-btn").hide();
     });
 }
