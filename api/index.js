@@ -4,9 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/github');
-var hnRoute = require('./routes/hackernews');
-var redditRoute = require('./routes/reddit');
+var indexRouter = require('../routes/github');
+var hnRoute = require('../routes/hackernews');
+var redditRoute = require('../routes/reddit');
 
 var app = express();
 

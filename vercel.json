@@ -1,10 +1,8 @@
 {
-    "version": 2,
-    "name": "trendtalks",
-    "builds": [
-       { "src": "./bin/www", "use": "@vercel/node" }
-    ],
-    "routes": [
-       { "src": "/(.*)", "dest": "/app.js" }
-    ]
+   "rewrites": [
+      {
+         "source": "/(.*)",
+         "destination": "/api"
+      }
+   ]
 }
