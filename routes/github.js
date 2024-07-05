@@ -8,7 +8,6 @@ router.get("/", (req, res, next) => {
     console.log("Fetching repositories...");
     fetchTodaysTrendingRepositories()
         .then((repos) => {
-            console.log("Repositories fetched:", repos);
             res.render("index", { repos: repos }, (err, html) => {
                 if (err) {
                     console.error("Error rendering template:", err);
