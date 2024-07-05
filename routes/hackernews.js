@@ -1,46 +1,38 @@
-var express = require('express');
-var router = express.Router();
-var request = require('request');
-var randomUseragent = require('random-useragent');
+const express = require("express");
+const router = express.Router();
+const axios = require("axios");
 
-
-router.get('/', function (req, res, next) {
-    searchHackerNews(req).then(function (result) {
-        res.send(result);
-    }, function (error) {
-        res.send(error);
-    });
+router.get("/", async (req, res) => {
+    try {
+        const result = await searchHackerNews(req);
+        res.json(result);
+    } catch (error) {
+        console.error('Error searching Hacker News:', error);
+        res.status(500).json({ error: 'Error searching Hacker News' });
+    }
 });
 
 // search hacker news
-function searchHackerNews(req) {
-    return new Promise(function (resolve, reject) {
-        request('https://hn.algolia.com/api/v1/search?query=' + req.query.q + '&tags=story', function (error, response, body) {
-            if (error) {
-                reject(error);
-            }
+async function searchHackerNews(req) {
+    try {
+        const query = encodeURIComponent(req.query.q);
+        const response = await axios.get(`https://hn.algolia.com/api/v1/search?query=${query}&tags=story`);
 
-            var _body = {}
-            try {
-                _body = JSON.parse(body);
-            } catch (e) {
-
-            }
-
-            var hackerNewsUrls = [];
-            if (_body.hits && _body.hits.length > 0) {
-
-                _body.hits.forEach(function (hit) {
-                    var hnStory = 'https://news.ycombinator.com/item?id=' + hit.objectID;
-                    hackerNewsUrls.push(hnStory);
+        const hackerNewsResults = [];
+        if (response.data.hits && response.data.hits.length > 0) {
+            response.data.hits.forEach((hit) => {
+                hackerNewsResults.push({
+                    title: hit.title,
+                    link: `https://news.ycombinator.com/item?id=${hit.objectID}`
                 });
+            });
+        }
 
-                resolve(hackerNewsUrls);
-            } else {
-                resolve(hackerNewsUrls);
-            }
-        });
-    });
+        return hackerNewsResults;
+    } catch (error) {
+        console.error('Error fetching from Hacker News API:', error);
+        throw error;
+    }
 }
 
 module.exports = router;

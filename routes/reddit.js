@@ -1,54 +1,52 @@
-var express = require('express');
-var router = express.Router();
-var request = require('request');
-var randomUseragent = require('random-useragent');
+const express = require("express");
+const router = express.Router();
+const axios = require("axios");
+const randomUseragent = require("random-useragent");
 
-
-router.get('/', function (req, res, next) {
-    searchReddit(req).then(function (result) {
-        res.send(result);
-    }, function (error) {
-        res.send(error);
-    });
+router.get("/", async (req, res) => {
+    try {
+        const result = await searchReddit(req);
+        res.json(result);
+    } catch (error) {
+        console.error("Error searching Reddit:", error);
+        res.status(500).json({ error: "Error searching Reddit" });
+    }
 });
 
 // search reddit
-function searchReddit(req) {
-    return new Promise(function (resolve, reject) {
-        var options = {
-            method: 'GET',
-            url: 'https://api.reddit.com/search?q=' + req.query.q,
-            headers: {
-                'User-Agent': randomUseragent.getRandom()
-            }
-        };
+async function searchReddit(req) {
+    const options = {
+        method: "GET",
+        url: `https://api.reddit.com/search?q=${encodeURIComponent(req.query.q)}`,
+        headers: {
+            "User-Agent": randomUseragent.getRandom(),
+        },
+    };
 
-        request(options, function (error, response, body) {
-            if (error) {
-                reject(error);
-            }
+    try {
+        const response = await axios(options);
+        const redditResults = [];
 
-            var _body = {}
-            try {
-                _body = JSON.parse(body);
-            } catch (e) {
+        if (
+            response.data.data &&
+            response.data.data.children &&
+            response.data.data.children.length > 0
+        ) {
+            response.data.data.children.forEach((hit) => {
+                if (hit.data && hit.data.permalink) {
+                    redditResults.push({
+                        title: hit.data.title,
+                        link: "https://reddit.com" + hit.data.permalink,
+                    });
+                }
+            });
+        }
 
-            }
-
-            var redditUrls = [];
-            if (_body.data && _body.data.children && _body.data.children.length > 0) {
-                _body.data.children.forEach(function (hit) {
-                    if (hit.data && hit.data.permalink) {
-                        redditUrls.push('https://reddit.com' + hit.data.permalink);
-                    }
-                });
-
-                resolve(redditUrls);
-            } else {
-                resolve(redditUrls);
-            }
-        });
-    });
+        return redditResults;
+    } catch (error) {
+        console.error("Error fetching from Reddit API:", error);
+        throw error;
+    }
 }
 
 module.exports = router;

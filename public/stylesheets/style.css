@@ -117,6 +117,15 @@ ul[id^="reddit-"] li {
   background-image: url("https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-57x57.png");
 }
 
+ul[id^="stackoverflow-"] li {
+  background-image: url("https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico");
+}
+
+ul[id^="devto-"] li {
+  background-image: url("https://res.cloudinary.com/practicaldev/image/fetch/s--E8ak4Hr1--/c_limit,f_auto,fl_progressive,q_auto,w_32/https://dev-to.s3.us-east-2.amazonaws.com/favicon.ico");
+}
+
+
 .loader {
   display: none;
   height: 32px;

@@ -10,14 +10,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
-    <script async src='https://reflio.com/js/reflio.min.js' data-reflio='e6cddk18jaec6kd'></script>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="padding: 0 20px 0 20px;">
         <div class="row">
             <% repos.forEach(function(repo){ %>
-                <div class="col-sm-9" style="margin: 15px">
+                <div class="col-sm-9" style="margin: 15px;">
                     <div class="card">
                         <div class="card-body">
                             <a href="<%= repo.url%>" target="_blank">
@@ -73,11 +72,14 @@
 
                                             <span class="d-inline-block">
                                                 Authored by
-                                                <% repo.builtBy.forEach(function(user) { %>
-                                                    <a class="d-inline-block" target="_blank" href="<%= user.url%>"><img
-                                                            class="avatar mb-1" src="<%= user.avatar%>" width="20"
-                                                            height="20"></a>
-                                                    <% }); %>
+                                                <% if (repo.builtBy && Array.isArray(repo.builtBy)) { %>
+                                                    <% repo.builtBy.forEach(function(user) { %>
+                                                        <a class="d-inline-block" target="_blank" href="<%= user.url%>"><img class="avatar mb-1"
+                                                                src="<%= user.avatar%>" width="20" height="20"></a>
+                                                        <% }); %>
+                                                            <% } else { %>
+                                                                Unknown
+                                                                <% } %>
                                             </span>
                             </div>
                             <div class="mt-15">
@@ -97,6 +99,8 @@
                                 </ul>
                                 <ul id="hn-<%= repo.repositoryName.replace(/[^a-zA-Z ]/g, '')%>"></ul>
                                 <ul id="reddit-<%= repo.repositoryName.replace(/[^a-zA-Z ]/g, '')%>"></ul>
+                                <ul id="stackoverflow-<%= repo.repositoryName.replace(/[^a-zA-Z ]/g, '')%>"></ul>
+                                <ul id="devto-<%= repo.repositoryName.replace(/[^a-zA-Z0-9-_]/g, '')%>"></ul>
                             </div>
                         </div>
                         <div class="text-center">
