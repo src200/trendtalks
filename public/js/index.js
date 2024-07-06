@@ -28,9 +28,10 @@ function fetchUrls(repo) {
             // biome-ignore lint/complexity/noForEach: <explanation>
             results.forEach((result) => {
                 if (result.status === 'fulfilled') {
-                    const serviceName = result.value.id;
+                    const serviceId = result.value.id;
+                    const serviceName = result.value.name;
                     const data = result.value.data;
-                    const element = $(`#${serviceName}-${repo.repositoryName}`);
+                    const element = $(`#${serviceId}-${repo.repositoryName}`);
                     console.log(element)
                     // biome-ignore lint/complexity/noForEach: <explanation>
                     data?.forEach((v) => {
