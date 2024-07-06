@@ -33,7 +33,7 @@ function fetchUrls(repo) {
                     const element = $(`#${serviceName}-${repo.repositoryName}`);
 
                     // biome-ignore lint/complexity/noForEach: <explanation>
-                    data.forEach((v) => {
+                    data?.forEach((v) => {
                         element.append(
                             `<li style='margin-bottom: 5px'>
                                 <a class='repo-article' href="${v.link}" target='_blank'>${v.title}</a>

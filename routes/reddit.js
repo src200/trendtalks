@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
         res.json(result);
     } catch (error) {
         console.error("Error searching Reddit:", error);
-        res.status(500).json({ error: "Error searching Reddit" });
+        res.status(500).json({ message: "Error searching Reddit", error });
     }
 });
 
@@ -28,15 +28,15 @@ async function searchReddit(req) {
         const redditResults = [];
 
         if (
-            response.data.data &&
-            response.data.data.children &&
+            response.data.data?.children &&
             response.data.data.children.length > 0
         ) {
+            // biome-ignore lint/complexity/noForEach: <explanation>
             response.data.data.children.forEach((hit) => {
-                if (hit.data && hit.data.permalink) {
+                if (hit.data?.permalink) {
                     redditResults.push({
                         title: hit.data.title,
-                        link: "https://reddit.com" + hit.data.permalink,
+                        link: `https://reddit.com${hit.data.permalink}`,
                     });
                 }
             });
