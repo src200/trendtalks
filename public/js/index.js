@@ -8,7 +8,7 @@ function fetchUrls(repo) {
         { name: 'HackerNews', id: 'hn', url: `/hn?q=${repo.url}` },
         { name: 'Reddit', id: 'reddit', url: `/reddit?q=${repo.url}` },
         { name: 'Stackoverflow', id: 'stackoverflow', url: `/stackoverflow?q=${repo.url}` },
-        { name: 'Dev.to', id: 'devto', url: `/devto?q=${repo.url}` }
+        // { name: 'Dev.to', id: 'devto', url: `/devto?q=${repo.url}` }
     ];
 
     const promises = services.map(service =>
