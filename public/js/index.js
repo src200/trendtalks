@@ -5,10 +5,10 @@ function fetchUrls(repo) {
     $(`#${repo.repositoryName}-btn`).prop("disabled", true);
 
     const services = [
-        { name: 'HackerNews', url: `/hn?q=${repo.url}` },
-        { name: 'Reddit', url: `/reddit?q=${repo.url}` },
-        { name: 'Stackoverflow', url: `/stackoverflow?q=${repo.url}` },
-        { name: 'Dev.to', url: `/devto?q=${repo.url}` }
+        { name: 'HackerNews', id: 'hn', url: `/hn?q=${repo.url}` },
+        { name: 'Reddit', id: 'reddit', url: `/reddit?q=${repo.url}` },
+        { name: 'Stackoverflow', id: 'stackoverflow', url: `/stackoverflow?q=${repo.url}` },
+        { name: 'Dev.to', id: 'devto', url: `/devto?q=${repo.url}` }
     ];
 
     const promises = services.map(service =>
@@ -19,7 +19,7 @@ function fetchUrls(repo) {
                 }
                 return response.json();
             })
-            .then(data => ({ name: service.name, data: data }))
+            .then(data => ({ name: service.name, id: service.id, data: data }))
             .catch(error => ({ reason: `${service.name} failed: ${error.message}` }))
     );
 
@@ -28,10 +28,10 @@ function fetchUrls(repo) {
             // biome-ignore lint/complexity/noForEach: <explanation>
             results.forEach((result) => {
                 if (result.status === 'fulfilled') {
-                    const serviceName = result.value.name;
+                    const serviceName = result.value.id;
                     const data = result.value.data;
                     const element = $(`#${serviceName}-${repo.repositoryName}`);
-
+                    console.log(element)
                     // biome-ignore lint/complexity/noForEach: <explanation>
                     data?.forEach((v) => {
                         element.append(

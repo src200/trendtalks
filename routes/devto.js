@@ -6,7 +6,7 @@ const axios = require('axios');
 router.get('/', async (req, res) => {
     try {
         const query = encodeURIComponent(req.query.q);
-        const response = await axios.get(`https://dev.to/api/articles?per_page=5&search=${query}`);
+        const response = await axios.get(`https://dev.to/api/articles?search=${query}`);
         const articles = response.data.map(item => ({
             title: item.title,
             link: item.url
